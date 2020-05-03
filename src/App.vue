@@ -5,7 +5,7 @@
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab&family=Roboto+Mono&family=Sacramento&display=swap');
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

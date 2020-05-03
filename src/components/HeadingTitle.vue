@@ -1,12 +1,12 @@
 <template>
   <div class="heading-title">
-    <img id="logo" src="@/assets/mainlogo.png" alt="Sprout Logo">
-    <div id="heading">
-        <h1 id="title">{{ msg }}</h1>
+    <img id="logo" src="@/assets/mainlogo.png" alt="Sprout Logo" :class="$mq">
+    <div id="heading" :class="$mq">
+        <h1 id="title" :class="$mq">{{ msg }}</h1>
         <div id="nav">
-            <router-link to="/">add</router-link>
-            <router-link to="/">settings</router-link>
-            <router-link to="/">about</router-link>
+            <router-link to="/" :class="$mq">add</router-link>
+            <router-link to="/" :class="$mq">settings</router-link>
+            <router-link to="/" :class="$mq">about</router-link>
         </div>
     </div>
   </div>
@@ -22,36 +22,52 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="postcss" scoped>
 #title {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 300;
-    font-size: 50px;
-    display: inline-block;
-    color: #3A3A3A;
-    margin: 0px;
+  margin-top: -5px;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  display: inline-block;
+  color: #3A3A3A;
+  margin: 0px;
+  font-size: 50px;
 }
+#title.mobile {
+  font-size: 30px;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 .heading-title {
     margin: 30px;
     overflow: auto;
     display: inline-block;
 }
+
 #logo {
     float: left;
     height: 80px;
 }
+#logo.mobile {
+  height: 40px;
+}
+
 #heading {
     margin-left: 30px;
     float: left;
 }
+#heading.mobile {
+  margin-left: 15px;
+}
+
 a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: #3A3A3A;
@@ -60,7 +76,9 @@ a:link, a:visited, a:hover, a:active {
     margin-left: 8px;
     margin-right: 5px;
 }
-#title {
-    margin-top: -5px;
+
+a.mobile {
+  margin-left: 2px;
+  font-size: 13px;
 }
 </style>

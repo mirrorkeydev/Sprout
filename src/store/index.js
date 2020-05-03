@@ -5,7 +5,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    rooms: ["bedroom", "kitchen"]
+    rooms: ["bedroom"],
+    connected: true,
+    family: [
+      {
+        given_name: "Ophelia",
+        common_name: "Chinese Evergreen",
+        uncommon_name: "Aglaonema Silver Bay",
+        botanical_name: "Aglaonema Commutatum",
+        variegated: false,
+        icon: "plant1_green"
+      },
+      {
+        given_name: "Elinor",
+        common_name: "Baby Rubber Plant",
+        botanical_name: "Peperomia Obtusifolia",
+        variegated: true,
+        icon: "plant2_green"
+      }
+    ]
   },
   mutations: {
   },

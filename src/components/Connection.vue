@@ -1,11 +1,13 @@
 <template>
-  <div class="connection" :class="$mq">
-    <img id="logo" src="@/assets/connected.png" alt="Connected Logo" :class="$mq">
-    <p v-if="this.$store.state.connected && $mq !== 'mobile'" :class="$mq">
+  <div class="connection unselectable" :class="$mq">
+    <img v-if="this.$store.state.connection_status === 'connected'" id="logo" src="@/assets/connected.png" alt="Connected Logo" :class="$mq">
+    <img v-if="this.$store.state.connection_status === 'connecting'" id="logo" src="@/assets/connecting.png" alt="Connected Logo" :class="$mq">
+    <img v-if="this.$store.state.connection_status === 'connecting_failed'" id="logo" src="@/assets/connectingfailed.png" alt="Connected Logo" :class="$mq">
+    <p v-if="this.$store.state.connection_status === 'connected' && $mq !== 'mobile'" :class="$mq">
     <span>connected </span>
     <span v-for="room in this.$store.state.rooms" :key="room.name"> "{{room}}" </span>
     </p>
-    <div v-if="this.$store.state.connected" id="num-rooms" :class="$mq"> {{ this.$store.getters.NUM_ROOMS }} </div>
+    <div v-if="this.$store.state.connection_status === 'connected'" id="num-rooms" :class="$mq"> {{ this.$store.getters.NUM_ROOMS }} </div>
   </div>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
-  <div class="heading-title">
+  <div class="heading-title unselectable">
     <img id="logo" src="@/assets/mainlogo.png" alt="Sprout Logo" :class="$mq">
     <div id="heading" :class="$mq">
         <h1 id="title" :class="$mq">{{ msg }}</h1>
         <div id="nav">
             <router-link to="/" :class="$mq">add</router-link>
             <router-link to="/" :class="$mq">settings</router-link>
-            <router-link to="/" :class="$mq">about</router-link>
+            <router-link to="/about" :class="$mq">about</router-link>
         </div>
     </div>
   </div>

@@ -1,8 +1,8 @@
 <template>
   <div class="connection unselectable" :class="$mq">
-    <img v-if="this.$store.state.connection_status === 'connected'" id="logo" src="@/assets/connected.png" alt="Connected Logo" :class="$mq">
-    <img v-if="this.$store.state.connection_status === 'connecting'" id="logo" src="@/assets/connecting.png" alt="Connected Logo" :class="$mq">
-    <img v-if="this.$store.state.connection_status === 'connecting_failed'" id="logo" src="@/assets/connectingfailed.png" alt="Connected Logo" :class="$mq">
+    <img v-if="this.$store.state.connection_status === 'connected'" id="logo" src="@/assets/connected.png" alt="Connected" :class="$mq">
+    <img v-if="this.$store.state.connection_status === 'connecting'" id="logo" src="@/assets/connecting.png" alt="Connecting" :class="$mq">
+    <img v-if="this.$store.state.connection_status === 'connecting_failed'" id="logo" src="@/assets/connectingfailed.png" alt="Connection Failed" :class="$mq">
     <p v-if="this.$store.state.connection_status === 'connected' && $mq !== 'mobile'" :class="$mq">
     <span>connected </span>
     <span v-for="room in this.$store.state.rooms" :key="room.name"> "{{room}}" </span>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'Connection'
+  name: 'Connection',
 }
 </script>
 

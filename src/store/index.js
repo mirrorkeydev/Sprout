@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     rooms: ["bedroom"],
-    connection_status: "connection_failed",
+    connection_status: "connecting_failed",
     family: [
       {
         given_name: "Ophelia",
@@ -45,7 +45,7 @@ export default new Vuex.Store({
       }
       
       // Grab our data from the api
-      Axios.get('https://jsonplaceholder.typicode.com/todos/1')
+      Axios.get('http://slowwly.robertomurray.co.uk/delay/3300/url/https://jsonplaceholder.typicode.com/todos/1')
       .then(response => {
         context.commit('SET_CONNECTION_STATUS', 'connected')
         context.commit('SET_DATA', response.data)

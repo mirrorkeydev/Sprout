@@ -35,9 +35,11 @@ export default {
     SectionHeader
   },
   mounted: function () {
+    this.$store.dispatch('fetchData')
+
     setInterval(() => {
         this.$store.dispatch('fetchData')
-      }, 60000);
+      }, 10000);
   },
 }
 </script>

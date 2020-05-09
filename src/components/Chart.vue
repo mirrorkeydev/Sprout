@@ -2,18 +2,77 @@
   <div class="chart-wrapper unselectable" :class="$mq" :style="cssProps">
     <h3 id="chart-title" :class="$mq" > {{ datatype }} </h3>
     <div class="chart" :style="cssProps" :class="$mq" >
-
+        <v-chart :options="chartOptions" autoresize/>
     </div>
   </div>
 </template>
 
 <script>
+import ECharts from 'vue-echarts'
+import 'echarts/lib/chart/line'
+
+
 export default {
   name: 'Chart',
+  components:{
+      'v-chart': ECharts
+  },
   props: {
       datatype: String,
       height: Number,
       width: Number
+  },
+  data () {
+    let data = require('../../public/samplecharts/moisturebinnedbyhour.json')
+
+    return {
+      chartOptions: {
+        tooltip: {
+            show: true,
+            trigger: 'item'
+        },
+        xAxis:{
+            data: data.map(obj => obj.x)
+        },
+        yAxis:{
+            type: 'value',
+            min: 100,
+            splitNumber: 4,
+        },
+        dataset: {
+            source: [
+                ['0x24'].concat(data.map(obj => obj.y)),
+                ['0x26'].concat(data.map(obj => obj.y_series_0))
+            ]
+        },
+        series: [
+          {
+            type: 'line',
+            data: data.map(obj => obj.y),
+            lineStyle: {
+                width: 3,
+                color: ["#88DEE3"],
+            },
+            showSymbol: false,
+            smoothMonotone: true,
+            sampling: 'min',
+          },
+          {
+            type: 'line',
+            data: data.map(obj => obj.y_series_0),
+            lineStyle: {
+                width: 3,
+                color: ["#9E96FB"],
+            },
+            showSymbol: false,
+            smoothMonotone: true,
+            sampling: 'min',
+          }
+        ],
+        animationDuration: 1000,
+        animationEasing: 'cubicInOut',
+      }
+    }
   },
   computed: {
       // This allows props to be used in the css
@@ -48,6 +107,7 @@ export default {
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13); 
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13);
+    padding: 10px 0px 20px 0px;
 }
 .chart.mobile {
     width: var(--prop-width-mobile);
@@ -61,5 +121,9 @@ export default {
 #chart-title.mobile {
     font-size: 15px;
     margin: 0px 0px 15px 15px;
+}
+.echarts{
+    height: 100%;
+    width: 100%;
 }
 </style>

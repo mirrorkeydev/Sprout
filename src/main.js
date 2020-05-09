@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueMq from 'vue-mq'
+import ECharts from 'vue-echarts'
+
+Vue.component('v-chart', ECharts)
 
 Vue.config.productionTip = false
 

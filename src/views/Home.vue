@@ -5,12 +5,12 @@
     <SectionHeader text="the family" />
     <Family/>
     <div id="general-charts" :class="$mq">
-      <Chart datatype="soil moisture" :height="450" :width="800" />
+      <MoistureChart title="soil moisture" :height="450" :width="800" />
     </div>
     <SectionHeader text="environment" />
     <div id="environment-charts" :class="$mq">
-      <Chart datatype="temperature" :height="450" :width="800" />
-      <Chart datatype="humidity" :height="450" :width="800" />
+      <TemperatureChart title="temperature" :height="450" :width="800" />
+      <Chart title="humidity" :height="450" :width="800" />
       <Chart datatype="light" :height="450" :width="800" />
     </div>
   </div>
@@ -21,7 +21,8 @@
 import HeadingTitle from '@/components/HeadingTitle.vue'
 import Connection from '@/components/Connection.vue'
 import Family from '@/components/Family.vue'
-import Chart from '@/components/Chart.vue'
+import MoistureChart from '@/components/MoistureChart.vue'
+import TemperatureChart from '@/components/TemperatureChart.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
 
 
@@ -31,7 +32,8 @@ export default {
     HeadingTitle,
     Connection,
     Family,
-    Chart,
+    MoistureChart,
+    TemperatureChart,
     SectionHeader
   },
   mounted: function () {

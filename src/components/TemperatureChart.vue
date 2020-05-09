@@ -1,6 +1,6 @@
 <template>
   <div class="chart-wrapper unselectable" :class="$mq" :style="cssProps">
-    <h3 id="chart-title" :class="$mq" > {{ datatype }} </h3>
+    <h3 id="chart-title" :class="$mq" > {{ title }} </h3>
     <div class="chart" :style="cssProps" :class="$mq" >
         <v-chart :options="chartOptions" autoresize/>
     </div>
@@ -13,60 +13,55 @@ import 'echarts/lib/chart/line'
 
 
 export default {
-  name: 'Chart',
+  name: 'TemperatureChart',
   components:{
       'v-chart': ECharts
   },
   props: {
-      datatype: String,
+      title: String,
       height: Number,
       width: Number
   },
   data () {
     let data = require('../../public/samplecharts/moisturebinnedbyhour.json')
+    var myColor = ['#45fda5', '#3ffd55', '#11da01', '#118b43', '#c3eb18',
+        '#dfde14', '#eac736', '#ed5501', '#9d0700', '#e80c00'
+    ];
 
     return {
       chartOptions: {
         tooltip: {
-            show: true,
-            trigger: 'item'
+            trigger: 'axis'
         },
+        visualMap: [{
+            show: false,
+            calculable: true,
+            min: 200,
+            max: 350,
+            inRange: { 
+                color: myColor 
+            }
+        }],
         xAxis:{
             data: data.map(obj => obj.x)
         },
         yAxis:{
             type: 'value',
-            min: 100,
+            min: 150,
             splitNumber: 4,
-        },
-        dataset: {
-            source: [
-                ['0x24'].concat(data.map(obj => obj.y)),
-                ['0x26'].concat(data.map(obj => obj.y_series_0))
-            ]
+            splitLine: {show: false}
         },
         series: [
-          {
-            type: 'line',
-            data: data.map(obj => obj.y),
-            lineStyle: {
-                width: 3,
-                color: ["#88DEE3"],
-            },
-            showSymbol: false,
-            smoothMonotone: true,
-            sampling: 'min',
-          },
           {
             type: 'line',
             data: data.map(obj => obj.y_series_0),
             lineStyle: {
                 width: 3,
-                color: ["#9E96FB"],
             },
             showSymbol: false,
             smoothMonotone: true,
             sampling: 'min',
+            animationEasing: 'cubicInOut',
           }
         ],
         animationDuration: 1000,

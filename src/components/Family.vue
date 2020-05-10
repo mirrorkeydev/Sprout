@@ -3,7 +3,7 @@
     <div class="family" :class="$mq">
         <div class="plant" v-for="plant in family" :key="plant.given_name" :class="$mq">
             <img :src="require('@/assets/' + plant.icon + '.png')" :alt="plant.given_name">
-            <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;" :class="plant.given_name.toLowerCase()"></span>
+            <span id="id-dot" :class="plant.given_name.toLowerCase()"></span>
             <span class="plant-name">{{ plant.given_name.toLowerCase() }}</span>
         </div>
     </div>
@@ -50,6 +50,13 @@ img {
     font-weight: 600;
     font-size: 14px;
     padding: 3px;
+}
+#id-dot{
+    display:inline-block;
+    margin-right:5px;
+    border-radius:10px;
+    width:9px;
+    height:9px;
 }
 .ophelia {
     background-color: #9E96FB;

@@ -2,7 +2,7 @@
   <div class="heading-title unselectable">
     <img id="logo" src="@/assets/mainlogo.png" alt="Sprout Logo" :class="$mq">
     <div id="heading" :class="$mq">
-        <h1 id="title" :class="$mq">{{ msg }}</h1>
+        <router-link to="/" id="title" :class="$mq">{{ msg }}</router-link>
         <div id="nav">
             <router-link to="/" :class="$mq">add</router-link>
             <router-link to="/" :class="$mq">settings</router-link>

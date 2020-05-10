@@ -33,8 +33,8 @@ export default {
               var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
 
               return params[0].name + "<br>" +
-                colorSpan(params[0].color) + params[0].data.toFixed(2) + "<br>" + 
-                colorSpan(params[1].color) + params[1].data.toFixed(2);
+                colorSpan(params[0].color) + "elinor: " + params[0].data.toFixed(2) + "<br>" + 
+                colorSpan(params[1].color) + "ophelia: "+ params[1].data.toFixed(2);
             }
         },
         xAxis:{

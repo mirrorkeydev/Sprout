@@ -59,6 +59,6 @@ export default {
   padding: 0px 80px 80px 80px;
 }
 #environment-charts.mobile {
-  padding: 0px 20px 20px 20px;
+  padding: 0px;
 }
 </style>

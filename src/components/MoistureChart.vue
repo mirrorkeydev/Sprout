@@ -82,7 +82,7 @@ export default {
           return {
              '--prop-height': (this.height) + "px",
              '--prop-width': (this.width) + "px",
-             '--prop-height-mobile': (this.height)/2.5 + "px",
+             '--prop-height-mobile': (this.height)/1.5 + "px",
              '--prop-width-mobile': (this.width)/2.5 + "px"
           }
       }
@@ -101,7 +101,7 @@ export default {
 }
 .chart-wrapper.mobile {
     height: var(--prop-height-mobile);
-    width: var(--prop-width-mobile);
+    width: 90%;
 }
 .chart {
     height: 85%;
@@ -113,6 +113,7 @@ export default {
 }
 .chart.mobile {
     width: var(--prop-width-mobile);
+    padding: 0px 20px 0px 20px;
 }
 #chart-title {
     font-weight: 900;

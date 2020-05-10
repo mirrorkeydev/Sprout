@@ -11,6 +11,7 @@
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/visualMap'
+import 'echarts/lib/component/tooltip'
 
 
 export default {
@@ -29,7 +30,12 @@ export default {
     return {
       chartOptions: {
         tooltip: {
-            trigger: 'axis'
+            trigger: 'axis',
+            formatter: (params) => {
+                var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+
+                return params[0].name + "<br>" + colorSpan(params[0].color) + params[0].data.toFixed(2);
+            }
         },
         xAxis:{
             data: data.map(obj => obj.x)

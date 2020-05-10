@@ -10,7 +10,7 @@
 <script>
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
-
+import 'echarts/lib/component/tooltip'
 
 export default {
   name: 'MoistureChart',
@@ -27,6 +27,16 @@ export default {
 
     return {
       chartOptions: {
+        tooltip: {
+            trigger: 'axis',
+            formatter: (params) => {
+              var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+
+              return params[0].name + "<br>" +
+                colorSpan(params[0].color) + params[0].data.toFixed(2) + "<br>" + 
+                colorSpan(params[1].color) + params[1].data.toFixed(2);
+            }
+        },
         xAxis:{
             data: data.map(obj => obj.x)
         },
@@ -42,11 +52,11 @@ export default {
             data: data.map(obj => obj.y),
             lineStyle: {
                 width: 3,
-                color: ["#88DEE3"],
             },
             smoothMonotone: true,
             sampling: 'min',
             showSymbol: false,
+            color: ["#88DEE3"],
             animationEasing: 'cubicInOut',
           },
           {
@@ -54,11 +64,11 @@ export default {
             data: data.map(obj => obj.y_series_0),
             lineStyle: {
                 width: 3,
-                color: ["#9E96FB"],
             },
             showSymbol: false,
             smoothMonotone: true,
             sampling: 'min',
+            color: ["#9E96FB"],
             animationEasing: 'cubicInOut',
           }
         ],

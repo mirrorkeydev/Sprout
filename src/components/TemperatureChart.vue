@@ -10,6 +10,7 @@
 <script>
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
+import 'echarts/lib/component/visualMap'
 
 
 export default {
@@ -24,24 +25,12 @@ export default {
   },
   data () {
     let data = require('../../public/samplecharts/moisturebinnedbyhour.json')
-    var myColor = ['#45fda5', '#3ffd55', '#11da01', '#118b43', '#c3eb18',
-        '#dfde14', '#eac736', '#ed5501', '#9d0700', '#e80c00'
-    ];
 
     return {
       chartOptions: {
         tooltip: {
             trigger: 'axis'
         },
-        visualMap: [{
-            show: false,
-            calculable: true,
-            min: 200,
-            max: 350,
-            inRange: { 
-                color: myColor 
-            }
-        }],
         xAxis:{
             data: data.map(obj => obj.x)
         },
@@ -50,6 +39,13 @@ export default {
             min: 150,
             splitNumber: 4,
             splitLine: {show: false}
+        },
+        visualMap: {
+            show: false,
+            type: 'continuous',
+            min: 200,
+            max: 350,
+            color: ['#F7948C', '#F7E28C']
         },
         series: [
           {

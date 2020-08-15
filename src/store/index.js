@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import Axios from 'axios'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import Axios from 'axios';
 
 Vue.use(Vuex)
 
@@ -15,14 +15,20 @@ export default new Vuex.Store({
         uncommon_name: "Aglaonema Silver Bay",
         botanical_name: "Aglaonema Commutatum",
         variegated: false,
-        icon: "plant1_green"
+        icon: "plant1",
+        status: "yellow",
+        green_threshold: 260,
+        yellow_threshold: 230,
       },
       {
         given_name: "Elinor",
         common_name: "Baby Rubber Plant",
         botanical_name: "Peperomia Obtusifolia",
         variegated: true,
-        icon: "plant2_green"
+        icon: "plant2",
+        status: "green",
+        green_threshold: 250,
+        yellow_threshold: 205,
       }
     ],
     data: null

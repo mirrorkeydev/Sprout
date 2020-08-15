@@ -2,7 +2,7 @@
   <div class="family-wrapper unselectable" :class="$mq">
     <div class="family" :class="$mq">
         <div class="plant" v-for="plant in family" :key="plant.given_name" :class="$mq">
-            <img :src="require('@/assets/' + plant.icon + '.png')" :alt="plant.given_name">
+            <img :src="require('@/assets/' + `${plant.icon}_${plant.status}` + '.png')" :alt="plant.given_name">
             <span id="id-dot" :class="plant.given_name.toLowerCase()"></span>
             <span class="plant-name">{{ plant.given_name.toLowerCase() }}</span>
         </div>

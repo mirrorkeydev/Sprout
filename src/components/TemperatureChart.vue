@@ -25,8 +25,6 @@ export default {
       width: Number
   },
   data () {
-    let data = require('../../public/samplecharts/moisturebinnedbyhour.json')
-
     return {
       chartOptions: {
         tooltip: {
@@ -38,7 +36,7 @@ export default {
             }
         },
         xAxis:{
-            data: data.map(obj => obj.x)
+            data: [],
         },
         yAxis:{
             type: 'value',
@@ -56,7 +54,7 @@ export default {
         series: [
           {
             type: 'line',
-            data: data.map(obj => obj.y_series_0),
+            data: [],
             lineStyle: {
                 width: 3,
             },
@@ -70,6 +68,13 @@ export default {
         animationEasing: 'cubicInOut',
       }
     }
+  },
+  async mounted() {
+    const data = await fetch('http://localhost:3000/temperature');
+    const json = await data.json();
+
+    this.chartOptions.xAxis.data = json.message[0].datetime;
+    this.$set(this.chartOptions.series, 0, Object.assign({}, this.chartOptions.series[0].data, { data: json.message[0].temp }));
   },
   computed: {
       // This allows props to be used in the css

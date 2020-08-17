@@ -3,7 +3,7 @@
     <div class="family" :class="$mq">
         <div class="plant" v-for="plant in family" :key="plant.given_name" :class="$mq">
             <img :src="require('@/assets/' + plant.icon + '.png')" :alt="plant.given_name">
-            <span id="id-dot" :class="plant.given_name.toLowerCase()"></span>
+            <span id="id-dot" :style="'background-color:'+ plant.color + ';'"></span>
             <span class="plant-name">{{ plant.given_name.toLowerCase() }}</span>
         </div>
     </div>
@@ -57,11 +57,5 @@ img {
     border-radius:10px;
     width:9px;
     height:9px;
-}
-.ophelia {
-    background-color: #9E96FB;
-}
-.elinor {
-    background-color: #88DEE3;
 }
 </style>

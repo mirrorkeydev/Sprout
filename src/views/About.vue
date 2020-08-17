@@ -3,14 +3,14 @@
     <HeadingTitle msg="SPROUT"/>
     <div class="about">
       <SectionHeader text="about" />
-      <p>
+      <p :class="$mq">
         Sprout was made by <a href="https://github.com/mirrorkeydev">Melanie Gutzmann</a>
         and <a href="https://github.com/prototypicalpro">Noah Koontz</a>. The project
         is inspired by (and connected to) Melanie's plant collection, pictured below.
       </p>
     </div>
-    <div id="image-grid-wrapper">
-      <img v-for="(image, i) in images" :key="i" :src="image" alt="">
+    <div id="image-grid-wrapper" :class="$mq">
+      <img v-for="(image, i) in images" :key="i" :src="image" alt="" :class="$mq">
     </div>
   </div>
 </template>
@@ -55,7 +55,10 @@ h1 {
   margin: 0px 0px 40px 0px;
 }
 p {
-  margin: 0vw 20vw 40px 20vw
+  margin: 0vw 30vw 40px 30vw
+}
+p.mobile{
+  margin: 0vw 10vw 40px 10vw
 }
 img {
   display: inline-block;
@@ -63,13 +66,18 @@ img {
   margin: 10px;
   max-height: 300px;
 }
-.image-grid{
+img.mobile {
+ max-height: 150px;
+ margin: 5px;
 }
 #image-grid-wrapper{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0px 20vw 0px 20vw;
+}
+#image-grid-wrapper.mobile{
+    margin: 0px 0vw 0px 0vw;
 }
 a:link, a:visited, a:hover, a:active {
     text-decoration: none;

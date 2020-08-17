@@ -15,14 +15,16 @@ export default new Vuex.Store({
         uncommon_name: "Aglaonema Silver Bay",
         botanical_name: "Aglaonema Commutatum",
         variegated: false,
-        icon: "plant1_green"
+        icon: "plant1_green",
+        color: "#9E96FB"
       },
       {
         given_name: "Elinor",
         common_name: "Baby Rubber Plant",
         botanical_name: "Peperomia Obtusifolia",
         variegated: true,
-        icon: "plant2_green"
+        icon: "plant2_green",
+        color: "#88DEE3"
       }
     ],
     data: null

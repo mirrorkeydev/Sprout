@@ -39,7 +39,8 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "babel-eslint",
+      "emcaVersion": 6
     },
     "rules": {}
   },

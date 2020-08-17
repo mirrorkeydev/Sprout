@@ -10,8 +10,6 @@
     <SectionHeader text="environment" />
     <div id="environment-charts" :class="$mq">
       <TemperatureChart title="temperature" :height="450" :width="800" />
-      <Chart title="humidity" :height="450" :width="800" />
-      <Chart datatype="light" :height="450" :width="800" />
     </div>
   </div>
 </template>

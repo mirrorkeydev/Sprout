@@ -17,7 +17,7 @@ export default new Vuex.Store({
         variegated: false,
         color: "#9E96FB",
         icon: "plant1",
-        status: "yellow",
+        status: "green",
         green_threshold: 260,
         yellow_threshold: 230,
       },

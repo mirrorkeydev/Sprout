@@ -10,29 +10,32 @@
     <SectionHeader text="environment" />
     <div id="environment-charts" :class="$mq">
       <TemperatureChart title="temperature" :height="450" :width="800" />
+      <PressureChart title="pressure" :height="450" :width="800" />
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HeadingTitle from '@/components/HeadingTitle.vue'
-import Connection from '@/components/Connection.vue'
-import Family from '@/components/Family.vue'
-import MoistureChart from '@/components/MoistureChart.vue'
-import TemperatureChart from '@/components/TemperatureChart.vue'
-import SectionHeader from '@/components/SectionHeader.vue'
+import Connection from '@/components/Connection.vue';
+import Family from '@/components/Family.vue';
+import HeadingTitle from '@/components/HeadingTitle.vue';
+import MoistureChart from '@/components/MoistureChart.vue';
+import PressureChart from '@/components/PressureChart.vue';
+import SectionHeader from '@/components/SectionHeader.vue';
+import TemperatureChart from '@/components/TemperatureChart.vue';
 
 
 export default {
   name: 'Home',
   components: {
-    HeadingTitle,
     Connection,
     Family,
+    HeadingTitle,
     MoistureChart,
+    PressureChart,
+    SectionHeader,
     TemperatureChart,
-    SectionHeader
   },
   mounted: function () {
     this.$store.dispatch('fetchData')

@@ -41,16 +41,17 @@ export default {
         },
         yAxis:{
           type: 'value',
-          min: 10,
+          min: 1000,
+          max: 1010,
           splitNumber: 4,
           splitLine: {show: false}
         },
         visualMap: {
           show: false,
           type: 'continuous',
-          min: 10,
-          max: 40,
-          color: ['#F7948C', '#F7E28C']
+          min: 1002,
+          max: 1008,
+          color: ['#414873', '#658da3']
         },
         series: [
           {
@@ -71,11 +72,11 @@ export default {
     }
   },
   async mounted() {
-    const data = await fetch('http://localhost:3000/temperature');
+    const data = await fetch('http://localhost:3000/pressure');
     const json = await data.json();
 
     this.chartOptions.xAxis.data = json.message[0].datetime;
-    this.$set(this.chartOptions.series, 0, Object.assign({}, this.chartOptions.series[0].data, { data: json.message[0].temp }));
+    this.$set(this.chartOptions.series, 0, Object.assign({}, this.chartOptions.series[0].data, { data: json.message[0].pressure }));
   },
   computed: {
     // This allows props to be used in the css

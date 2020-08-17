@@ -36,7 +36,8 @@ export default {
             }
         },
         xAxis:{
-            data: []
+            data: [],
+            show: 0,
         },
         yAxis:{
             type: 'value',

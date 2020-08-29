@@ -5,12 +5,13 @@
     <SectionHeader text="the family" />
     <Family/>
     <div id="general-charts" :class="$mq">
-      <MoistureChart title="soil moisture" :height="450" :width="800" />
+      <MoistureChart title="soil moisture" />
     </div>
     <SectionHeader text="environment" />
     <div id="environment-charts" :class="$mq">
       <TemperatureChart title="temperature" :height="450" :width="800" />
       <PressureChart title="pressure" :height="450" :width="800" />
+      <LightChart title="light" :height="450" :width="800" />
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@
 import Connection from '@/components/Connection.vue';
 import Family from '@/components/Family.vue';
 import HeadingTitle from '@/components/HeadingTitle.vue';
+import LightChart from '@/components/LightChart.vue';
 import MoistureChart from '@/components/MoistureChart.vue';
 import PressureChart from '@/components/PressureChart.vue';
 import SectionHeader from '@/components/SectionHeader.vue';
@@ -32,6 +34,7 @@ export default {
     Connection,
     Family,
     HeadingTitle,
+    LightChart,
     MoistureChart,
     PressureChart,
     SectionHeader,

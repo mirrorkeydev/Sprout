@@ -1,8 +1,10 @@
 <template>
-  <div class="chart-wrapper unselectable" :class="$mq" :style="cssProps">
+  <div class="chart-and-title-wrapper">
     <h3 id="chart-title" :class="$mq" > {{ title }} </h3>
-    <div class="chart" :style="cssProps" :class="$mq" >
-        <v-chart :options="chartOptions" autoresize/>
+    <div class="chart-wrapper unselectable" :class="$mq" >
+      <div class="chart" :class="$mq" >
+          <v-chart :options="chartOptions" autoresize/>
+      </div>
     </div>
   </div>
 </template>
@@ -26,18 +28,17 @@ export default {
     return {
       chartOptions: {
         tooltip: {
-            trigger: 'axis',
-            formatter: (params) => {
-              var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+          trigger: 'axis',
+          formatter: (params) => {
+            var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
 
-              return params[0].name + "<br>" +
-                colorSpan(params[0].color) + "elinor: " + params[0].data.toFixed(2) + "<br>" + 
-                colorSpan(params[1].color) + "ophelia: "+ params[1].data.toFixed(2);
-            }
+            return  params[0].data[0].toLocaleString('en-US') + "<br>" +
+              colorSpan(params[0].color) + "elinor: " + params[0].data[1].toFixed(2) + "<br>" + 
+              colorSpan(params[1].color) + "ophelia: "+ params[1].data[1].toFixed(2);
+          }
         },
         xAxis:{
-            data: [],
-            show: 0,
+          type: 'time',
         },
         yAxis:{
             type: 'value',
@@ -72,6 +73,12 @@ export default {
           }
         ],
         animationDuration: 1000,
+        grid: {
+          top: '15%',
+          left: 60,
+          right: 60,
+          bottom: 60,
+        },
       }
     }
   },
@@ -79,61 +86,46 @@ export default {
     const data = await fetch('http://localhost:3000/soilmoisture');
     const json = await data.json();
 
-    this.chartOptions.xAxis.data = json.message[0].datetime;
-    this.$set(this.chartOptions.series, 0, Object.assign({}, this.chartOptions.series[0].data, { data: json.message[0].ophelia }));
-    this.$set(this.chartOptions.series, 1, Object.assign({}, this.chartOptions.series[1].data, { data: json.message[0].elinor }));
+    this.chartOptions.series[0].data = json.message[0].datetime.map((x, i) => [new Date(x), json.message[0].elinor[i]]);
+    this.chartOptions.series[1].data = json.message[0].datetime.map((x, i) => [new Date(x), json.message[0].ophelia[i]]);
   },
-  computed: {
-      // This allows props to be used in the css
-      cssProps() {
-          return {
-             '--prop-height': (this.height) + "px",
-             '--prop-width': (this.width) + "px",
-             '--prop-height-mobile': (this.height)/1.5 + "px",
-             '--prop-width-mobile': (this.width)/2.5 + "px"
-          }
-      }
-  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="postcss">
-.chart-wrapper {
-    height: var(--prop-height);
-    width: var(--prop-width);
-    display: inline-block;
-    text-align: left;
-    padding: 15px 20px 15px 20px;
+.chart-and-title-wrapper {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 100rem;
+  padding: 15px 20px 15px 20px;
 }
-.chart-wrapper.mobile {
-    height: var(--prop-height-mobile);
-    width: 90%;
+
+.chart-wrapper {
+  height: 30vh;
+  width: 100%;
+  display: inline-block;
 }
 .chart {
-    height: 85%;
-    width: var(--prop-width);
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13); 
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13);
-    padding: 10px 0px 20px 0px;
-}
-.chart.mobile {
-    width: var(--prop-width-mobile);
-    padding: 0px 20px 0px 20px;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13); 
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13);
+  padding: 0;
 }
 #chart-title {
-    font-weight: 900;
-    font-size: 21px;
-    margin: 0px 0px 20px 20px;
-    color:rgb(82, 82, 82);
+  font-weight: 900;
+  font-size: 21px;
+  margin: 0px 0px 20px 20px;
+  color:rgb(82, 82, 82);
 }
 #chart-title.mobile {
-    font-size: 15px;
-    margin: 0px 0px 15px 15px;
+  font-size: 15px;
+  margin: 0px 0px 15px 15px;
 }
 .echarts{
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 </style>

@@ -31,18 +31,16 @@ export default {
           trigger: 'axis',
           formatter: (params) => {
             var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
-
-            return params[0].name + "<br>" + colorSpan(params[0].color) + params[0].data.toFixed(2);
+            return params[0].data[0].toLocaleString('en-US') + "<br>" + colorSpan(params[0].color) + params[0].data[1].toFixed(2);
           }
         },
         xAxis:{
-          data: [],
-          show: 0,
+          type: 'time'
         },
         yAxis:{
           type: 'value',
           min: 1000,
-          max: 1010,
+          max: 1015,
           splitNumber: 4,
           splitLine: {show: false}
         },
@@ -68,6 +66,9 @@ export default {
         ],
         animationDuration: 1000,
         animationEasing: 'cubicInOut',
+        grid: {
+          top: '15%',
+        },
       }
     }
   },
@@ -75,8 +76,7 @@ export default {
     const data = await fetch('http://localhost:3000/pressure');
     const json = await data.json();
 
-    this.chartOptions.xAxis.data = json.message[0].datetime;
-    this.$set(this.chartOptions.series, 0, Object.assign({}, this.chartOptions.series[0].data, { data: json.message[0].pressure }));
+    this.chartOptions.series[0].data = json.message[0].datetime.map((x, i) => [new Date(x), json.message[0].pressure[i]]);
   },
   computed: {
     // This allows props to be used in the css

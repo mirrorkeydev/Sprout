@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    rooms: ["bedroom"],
+    rooms: ["study"],
     connection_status: "connecting_failed",
     family: [
       {

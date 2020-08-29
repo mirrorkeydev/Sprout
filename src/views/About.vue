@@ -66,6 +66,10 @@ img {
   margin: 10px;
   max-height: 300px;
 }
+img.tablet {
+ max-height: 225px;
+ margin: 5px;
+}
 img.mobile {
  max-height: 150px;
  margin: 5px;
@@ -76,8 +80,11 @@ img.mobile {
   justify-content: center;
   margin: 0px 20vw 0px 20vw;
 }
+#image-grid-wrapper.tablet{
+  margin: 0px 10vw 0px 10vw;
+}
 #image-grid-wrapper.mobile{
-    margin: 0px 0vw 0px 0vw;
+  margin: 0px 0vw 0px 0vw;
 }
 a:link, a:visited, a:hover, a:active {
     text-decoration: none;

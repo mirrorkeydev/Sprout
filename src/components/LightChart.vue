@@ -2,7 +2,7 @@
   <div class="chart-wrapper unselectable" :class="$mq" :style="cssProps">
     <h3 id="chart-title" :class="$mq" > {{ title }} </h3>
     <div class="chart" :style="cssProps" :class="$mq" >
-        <v-chart :options="chartOptions" autoresize/>
+      <v-chart :options="chartOptions" autoresize/>
     </div>
   </div>
 </template>
@@ -40,16 +40,17 @@ export default {
         },
         yAxis:{
           type: 'value',
-          min: 10,
+          min: 740,
+          max: 775,
           splitNumber: 4,
           splitLine: {show: false}
         },
         visualMap: {
           show: false,
           type: 'continuous',
-          min: 10,
-          max: 40,
-          color: ['#F7948C', '#F7E28C']
+          min: 740,
+          max: 765,
+          color: ['#f6faa7', '#b5db9c', '#315e32']
         },
         series: [
           {
@@ -73,10 +74,10 @@ export default {
     }
   },
   async mounted() {
-    const data = await fetch('http://localhost:3000/temperature');
+    const data = await fetch('http://localhost:3000/light');
     const json = await data.json();
 
-    this.chartOptions.series[0].data = json.message[0].datetime.map((x, i) => [new Date(x), json.message[0].temp[i]]);
+    this.chartOptions.series[0].data = json.message[0].datetime.map((x, i) => [new Date(x), json.message[0].light[i]]);
   },
   computed: {
     // This allows props to be used in the css
@@ -95,40 +96,40 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="postcss">
 .chart-wrapper {
-    height: var(--prop-height);
-    width: var(--prop-width);
-    display: inline-block;
-    text-align: left;
-    padding: 15px 20px 15px 20px;
+  height: var(--prop-height);
+  width: var(--prop-width);
+  display: inline-block;
+  text-align: left;
+  padding: 15px 20px 15px 20px;
 }
 .chart-wrapper.mobile {
-    height: var(--prop-height-mobile);
-    width: 90%;
+  height: var(--prop-height-mobile);
+  width: 90%;
 }
 .chart {
-    height: 85%;
-    width: var(--prop-width);
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13); 
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13);
-    padding: 10px 0px 20px 0px;
+  height: 85%;
+  width: var(--prop-width);
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13); 
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13);
+  padding: 10px 0px 20px 0px;
 }
 .chart.mobile {
-    width: var(--prop-width-mobile);
-    padding: 0px 20px 0px 20px;
+  width: var(--prop-width-mobile);
+  padding: 0px 20px 0px 20px;
 }
 #chart-title {
-    font-weight: 900;
-    font-size: 21px;
-    margin: 0px 0px 20px 20px;
-    color:rgb(82, 82, 82);
+  font-weight: 900;
+  font-size: 21px;
+  margin: 0px 0px 20px 20px;
+  color:rgb(82, 82, 82);
 }
 #chart-title.mobile {
-    font-size: 15px;
-    margin: 0px 0px 15px 15px;
+  font-size: 15px;
+  margin: 0px 0px 15px 15px;
 }
 .echarts{
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 </style>

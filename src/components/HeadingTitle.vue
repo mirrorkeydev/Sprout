@@ -6,7 +6,7 @@
         <div id="nav">
             <router-link to="/" :class="$mq">home</router-link>
             <router-link to="/about" :class="$mq">about</router-link>
-            <a href="https://github.com/mirrorkeydev/Sprout" rel="noopener" target="_blank">github</a>
+            <a href="https://github.com/mirrorkeydev/Sprout" rel="noopener" target="_blank" :class="$mq">github</a>
         </div>
     </div>
   </div>

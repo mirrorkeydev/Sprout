@@ -60,7 +60,7 @@ export default new Vuex.Store({
       
       // Grab our data from the api
       try {
-        const plant_data = await (await fetch('http://localhost:3000/plantdata')).json();
+        const plant_data = await (await fetch('https://ktajuvbaof.execute-api.us-west-2.amazonaws.com/prod/plantdata')).json();
 
         const data = {};
         data.soil_moisture = {};

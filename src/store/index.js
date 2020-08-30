@@ -3,31 +3,31 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex)
 
+const API_URL = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000/dev/plantdata' : 'https://ktajuvbaof.execute-api.us-west-2.amazonaws.com/prod/plantdata';
+
 export default new Vuex.Store({
   state: {
     rooms: ["study"],
     connection_status: "connecting_failed",
     family: [
       {
-        given_name: "Ophelia",
+        given_name: "ophelia", // doubles as unique ID
         common_name: "Chinese Evergreen",
         uncommon_name: "Aglaonema Silver Bay",
         botanical_name: "Aglaonema Commutatum",
         variegated: false,
         color: "#9E96FB",
         icon: "plant1",
-        status: "green",
         green_threshold: 260,
         yellow_threshold: 230,
       },
       {
-        given_name: "Elinor",
+        given_name: "elinor",
         common_name: "Baby Rubber Plant",
         botanical_name: "Peperomia Obtusifolia",
         variegated: true,
         color: "#88DEE3",
         icon: "plant2",
-        status: "green",
         green_threshold: 250,
         yellow_threshold: 205,
       }
@@ -48,7 +48,8 @@ export default new Vuex.Store({
     },
     SET_DATA(state, data) {
       state.chart_data = data;
-    }
+    },
+
   },
   actions: {
     async fetchData(context) {
@@ -60,7 +61,7 @@ export default new Vuex.Store({
       
       // Grab our data from the api
       try {
-        const plant_data = await (await fetch('https://ktajuvbaof.execute-api.us-west-2.amazonaws.com/prod/plantdata')).json();
+        const plant_data = await (await fetch(API_URL)).json();
 
         const data = {};
         data.soil_moisture = {};

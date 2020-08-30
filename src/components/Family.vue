@@ -2,7 +2,8 @@
   <div class="family-wrapper unselectable" :class="$mq">
     <div class="family" :class="$mq">
       <div class="plant" v-for="plant in family" :key="plant.given_name" :class="$mq">
-        <img :src="require('@/assets/' + `${plant.icon}_${plant.status}` + '.png')" :alt="plant.given_name">
+        <PlantIconPointy v-if="plant.given_name === 'ophelia'" :hexColor="plant_status[plant.given_name]" />
+        <PlantIconRound v-if="plant.given_name === 'elinor'" :hexColor="plant_status[plant.given_name]" />
         <span id="id-dot" :style="'background-color:'+ plant.color + ';'"></span>
         <span class="plant-name">{{ plant.given_name.toLowerCase() }}</span>
       </div>
@@ -12,11 +13,36 @@
 
 <script>
 import { mapState } from 'vuex'
+import PlantIconPointy from '@/components/PlantIconPointy.vue';
+import PlantIconRound from '@/components/PlantIconRound.vue';
+
+const GREY = '#ccc';
+const GREEN = '#b6f0b5';
+const YELLOW = '#f8e09f';
+const RED = '#f8ab9f';
 
 export default {
   name: 'Family',
   computed: {
-    ...mapState(['family'])
+    ...mapState(['family', 'chart_data']),
+    plant_status() {
+      return Object.fromEntries(this.family.map(p => {
+        const moisture = this.chart_data.soil_moisture[p.given_name]?.slice(-1)[0][1];
+        if (typeof moisture === 'number' && !isNaN(moisture)) {
+          if (moisture > p.green_threshold) {
+            return [p.given_name, GREEN];
+          } else if (moisture > p.yellow_threshold) {
+            return [p.given_name, YELLOW];
+          }
+          return [p.given_name, RED];
+        }
+        return [p.given_name, GREY];
+      }));
+    }
+  },
+  components: {
+    PlantIconPointy,
+    PlantIconRound,
   }
 }
 </script>
@@ -42,7 +68,8 @@ export default {
 div {
   margin: 0px;
 }
-img {
+svg {
+  height: 100%;
   width: 100%;
 }
 .plant-name {

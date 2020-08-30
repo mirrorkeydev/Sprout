@@ -45,7 +45,7 @@ export default {
 
     setInterval(() => {
         this.$store.dispatch('fetchData')
-      }, 10000);
+      }, 30000);
   },
 }
 </script>

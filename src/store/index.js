@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Axios from 'axios';
 
 Vue.use(Vuex)
 
@@ -33,19 +32,26 @@ export default new Vuex.Store({
         yellow_threshold: 205,
       }
     ],
-    data: null
+    chart_data: {
+      soil_moisture: {
+        ophelia: null,
+        elinor: null,
+      },
+      temperature: null,
+      pressure: null,
+      light: null
+    }
   },
   mutations: {
     SET_CONNECTION_STATUS(state, status) {
-      state.connection_status = status
+      state.connection_status = status;
     },
     SET_DATA(state, data) {
-      state.data = data
+      state.chart_data = data;
     }
   },
   actions: {
-    fetchData(context) {
-
+    async fetchData(context) {
       // If we've made a successful connection in the past, we don't need to
       // let the user know that we're pinging the connection again
       if (context.state.connection_status != 'connected') {
@@ -53,15 +59,31 @@ export default new Vuex.Store({
       }
       
       // Grab our data from the api
-      Axios.get('http://slowwly.robertomurray.co.uk/delay/3300/url/https://jsonplaceholder.typicode.com/todos/1')
-      .then(response => {
-        context.commit('SET_CONNECTION_STATUS', 'connected')
-        context.commit('SET_DATA', response.data)
-      })
-      .catch(error => {
+      try {
+        const endpoints = ['http://localhost:3000/soilmoisture', 'http://localhost:3000/temperature', 'http://localhost:3000/pressure', 'http://localhost:3000/light'];
+        const [ soil_moisture, temperature, pressure, light ] = await Promise.all(endpoints.map(async (e) => await (await fetch(e)).json()));
+
+        const data = {};
+        data.soil_moisture = {};
+        data.soil_moisture.ophelia = soil_moisture.message[0].datetime.map((x, i) => [new Date(x), soil_moisture.message[0].ophelia[i]]);
+        data.soil_moisture.elinor = soil_moisture.message[0].datetime.map((x, i) => [new Date(x), soil_moisture.message[0].elinor[i]]);
+        data.temperature = temperature.message[0].datetime.map((x, i) => [new Date(x), temperature.message[0].temp[i]]);
+        data.pressure = temperature.message[0].datetime.map((x, i) => [new Date(x), pressure.message[0].pressure[i]]);
+        data.light = temperature.message[0].datetime.map((x, i) => [new Date(x), light.message[0].light[i]]);
+        
+        const dates_measured = soil_moisture.message[0].datetime;
+        context.commit('SET_DATA', data);
+        
+        // Check if data was sent in the last 10 minutes - if not, show a failing connection.
+        if (Date.now() - new Date(dates_measured[dates_measured.length - 1]).getTime() > 10 * 60 * 1000) {
+          context.commit('SET_CONNECTION_STATUS', 'connecting_failed')
+        } else {
+          context.commit('SET_CONNECTION_STATUS', 'connected');
+        }
+      } catch (e) {
         context.commit('SET_CONNECTION_STATUS', 'connecting_failed')
-        console.log(error)
-      })
+        console.warn(e);
+      }
     }
   },
   modules: {

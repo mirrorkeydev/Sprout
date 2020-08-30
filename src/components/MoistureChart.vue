@@ -13,6 +13,7 @@
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
+import { mapState } from 'vuex'
 
 export default {
   name: 'MoistureChart',
@@ -23,6 +24,15 @@ export default {
       title: String,
       height: Number,
       width: Number
+  },
+  computed: {
+    ...mapState(['chart_data']),
+  },
+  watch: {
+    chart_data(cd) {
+      this.chartOptions.series[0].data = cd.soil_moisture.elinor;
+      this.chartOptions.series[1].data = cd.soil_moisture.ophelia;
+    }
   },
   data () {
     return {
@@ -49,7 +59,7 @@ export default {
         series: [
           {
             type: 'line',
-            data: [],
+            data: null,
             lineStyle: {
                 width: 3,
             },
@@ -61,7 +71,7 @@ export default {
           },
           {
             type: 'line',
-            data: [],
+            data: null,
             lineStyle: {
                 width: 3,
             },
@@ -81,14 +91,7 @@ export default {
         },
       }
     }
-  },
-  async mounted() {
-    const data = await fetch('http://localhost:3000/soilmoisture');
-    const json = await data.json();
-
-    this.chartOptions.series[0].data = json.message[0].datetime.map((x, i) => [new Date(x), json.message[0].elinor[i]]);
-    this.chartOptions.series[1].data = json.message[0].datetime.map((x, i) => [new Date(x), json.message[0].ophelia[i]]);
-  },
+  }
 }
 </script>
 

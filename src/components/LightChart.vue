@@ -12,7 +12,7 @@ import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/visualMap'
 import 'echarts/lib/component/tooltip'
-
+import { mapState } from 'vuex'
 
 export default {
   name: 'TemperatureChart',
@@ -73,12 +73,6 @@ export default {
       }
     }
   },
-  async mounted() {
-    const data = await fetch('http://localhost:3000/light');
-    const json = await data.json();
-
-    this.chartOptions.series[0].data = json.message[0].datetime.map((x, i) => [new Date(x), json.message[0].light[i]]);
-  },
   computed: {
     // This allows props to be used in the css
     cssProps() {
@@ -88,8 +82,14 @@ export default {
         '--prop-height-mobile': (this.height)/1.5 + "px",
         '--prop-width-mobile': (this.width)/2.5 + "px"
       }
+    },
+      ...mapState(['chart_data']),
+  },
+  watch: {
+    chart_data(cd) {
+      this.chartOptions.series[0].data = cd.light;
     }
-  }
+  },
 }
 </script>
 

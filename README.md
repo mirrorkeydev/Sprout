@@ -13,10 +13,10 @@ Sprout offers:
 Sprout's frontend was written using [Vue.js](https://vuejs.org/). The charts were made using [vue-echarts](https://github.com/ecomfe/vue-echarts). The icons and overall design are original.
 
 #### Backend
-Sprout's backend is comprised of a middle-man API implemented using AWS Lambda and Serverless (URL to repo pending) that is periodically polled by the frontend. This API retrieves the necessary data from a MongoDB, does a small amount of processing to reduce the number of data points, and returns it to the frontend.
+Sprout's business logic consists of [an API](https://github.com/mirrorkeydev/SproutServerless) implemented using AWS Lambda and Serverless that is periodically polled by the frontend. This API retrieves the necessary data from a MongoDB instance hosted on Atlas, does a small amount of processing to reduce the number of data points, and returns it to the frontend.
 
 #### Data collection
-The data collection is handled by [AzureSpherePlantMonitor](https://github.com/prototypicalpro/AzureSpherePlantMonitor), which is an Azure Sphere hooked up to soil moisture sensors. This set up is currently deployed in my room, where it continues to gather new data every 2 minutes and publish its findings to a MongoDB every 10 minutes.
+The data collection is handled by [AzureSpherePlantMonitor](https://github.com/prototypicalpro/AzureSpherePlantMonitor), which is an Azure Sphere hooked up to soil moisture sensors. This set up is currently deployed in my room, where it continues to gather new data every 2 minutes and publish its findings to the MongoDB Atlas instance every 10 minutes.
 
 ## Project setup
 ```

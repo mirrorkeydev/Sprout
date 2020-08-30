@@ -4,9 +4,9 @@
     <div id="heading" :class="$mq">
         <router-link to="/" id="title" :class="$mq">{{ msg }}</router-link>
         <div id="nav">
-            <router-link to="/" :class="$mq">add</router-link>
-            <router-link to="/" :class="$mq">settings</router-link>
+            <router-link to="/" :class="$mq">home</router-link>
             <router-link to="/about" :class="$mq">about</router-link>
+            <a href="https://github.com/mirrorkeydev/Sprout" rel="noopener" target="_blank">github</a>
         </div>
     </div>
   </div>

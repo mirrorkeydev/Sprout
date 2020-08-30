@@ -1,4 +1,4 @@
-# 🌱Sprout
+# 🌱[Sprout](https://mirrorkey.dev/Sprout/)
 > A dashboard that shows real-time statistics about my plants and their environment.
 
 ## Features
@@ -17,6 +17,9 @@ Sprout's business logic consists of [an API](https://github.com/mirrorkeydev/Spr
 
 #### Data collection
 The data collection is handled by [AzureSpherePlantMonitor](https://github.com/prototypicalpro/AzureSpherePlantMonitor), which is an Azure Sphere hooked up to soil moisture sensors. This set up is currently deployed in my room, where it continues to gather new data every 2 minutes and publish its findings to the MongoDB Atlas instance every 10 minutes.
+
+## Authors
+This project is a collaboration between [Melanie Gutzmann](https://github.com/mirrorkeydev) (dashboard + api) and [Noah Koontz](https://github.com/prototypicalpro) (api + IoT data collection).
 
 ## Project setup
 ```

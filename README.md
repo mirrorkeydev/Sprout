@@ -4,7 +4,7 @@
 ## Features
 Sprout offers:
 - Soil moisture charts for each plant connected to Sprout
-- Environmental statistics about the plants' environment, including temperature, humidity, and light levels.
+- Environmental statistics about the plants' environment, including temperature, pressure, and light levels.
 - A cute design :)
 
 ## Technologies

@@ -7,7 +7,6 @@ const API_URL = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000/d
 
 export default new Vuex.Store({
   state: {
-    rooms: ["study"],
     connection_status: "connecting_failed",
     family: [
       {
@@ -84,13 +83,6 @@ export default new Vuex.Store({
         context.commit('SET_CONNECTION_STATUS', 'connecting_failed')
         console.warn(e);
       }
-    }
-  },
-  modules: {
-  },
-  getters: {
-    NUM_ROOMS: state => {
-      return state.rooms.length;
     }
   },
 })

@@ -9,9 +9,9 @@
     </div>
     <SectionHeader text="environment" />
     <div id="environment-charts" :class="$mq">
-      <TemperatureChart title="temperature" :height="450" :width="800" />
-      <PressureChart title="pressure" :height="450" :width="800" />
-      <LightChart title="light" :height="450" :width="800" />
+      <TemperatureChart title="temperature" :height="350" :width="600" />
+      <PressureChart title="pressure" :height="350" :width="600" />
+      <LightChart title="light" :height="350" :width="600" />
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
 
     setInterval(() => {
         this.$store.dispatch('fetchData');
-      }, 30000);
+      }, 600000); // 10 minutes
   },
 };
 </script>
@@ -60,7 +60,7 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0px 80px 80px 80px;
+  padding: 0px 40px 80px 40px;
 }
 #environment-charts.mobile {
   padding: 0px;

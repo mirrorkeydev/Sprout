@@ -1,8 +1,8 @@
 <template>
-  <div class="chart-and-title-wrapper">
-    <h3 id="chart-title" :class="$mq" > {{ title }} </h3>
-    <div class="chart-wrapper unselectable" :class="$mq" >
-      <div class="chart" :class="$mq" >
+  <div class="chart-and-title-wrapper" :class="$mq">
+    <h3 id="chart-title" :class="$mq"> {{ title }} </h3>
+    <div class="chart-wrapper unselectable" :class="$mq">
+      <div class="chart" :class="$mq">
           <v-chart :options="chartOptions" autoresize/>
       </div>
     </div>
@@ -101,13 +101,18 @@ export default {
   text-align: left;
   margin: 0 auto;
   max-width: 100rem;
+  padding: 15px 40px 15px 40px;
+}
+.chart-and-title-wrapper.mobile {
   padding: 15px 20px 15px 20px;
 }
-
 .chart-wrapper {
-  height: 30vh;
+  height: 450px;
   width: 100%;
   display: inline-block;
+}
+.chart-wrapper.mobile {
+  height: 250px;
 }
 .chart {
   height: 100%;

@@ -1,7 +1,7 @@
 <template>
-  <div class="chart-wrapper unselectable" :class="$mq" :style="cssProps">
-    <h3 id="chart-title" :class="$mq" > {{ title }} </h3>
-    <div class="chart" :style="cssProps" :class="$mq" >
+  <div class="chart-wrapper unselectable" :class="$mq">
+    <h3 id="chart-title" :class="$mq"> {{ title }} </h3>
+    <div class="chart" :class="$mq">
       <v-chart :options="chartOptions" autoresize/>
     </div>
   </div>
@@ -74,16 +74,7 @@ export default {
     };
   },
   computed: {
-    // This allows props to be used in the css
-    cssProps() {
-      return {
-        '--prop-height': (this.height) + "px",
-        '--prop-width': (this.width) + "px",
-        '--prop-height-mobile': (this.height)/1.5 + "px",
-        '--prop-width-mobile': (this.width)/2.5 + "px",
-      };
-    },
-      ...mapState(['chart_data']),
+    ...mapState(['chart_data']),
   },
   watch: {
     chart_data(cd) {
@@ -96,26 +87,25 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="postcss">
 .chart-wrapper {
-  height: var(--prop-height);
-  width: var(--prop-width);
+  height: 350px;
   display: inline-block;
+  flex: 0 1 600px;
   text-align: left;
+  margin: 10px;
   padding: 15px 20px 15px 20px;
 }
 .chart-wrapper.mobile {
-  height: var(--prop-height-mobile);
+  height: 250px;
   width: 90%;
 }
 .chart {
   height: 85%;
-  width: var(--prop-width);
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13); 
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.13);
   padding: 10px 0px 20px 0px;
 }
 .chart.mobile {
-  width: var(--prop-width-mobile);
   padding: 0px 20px 0px 20px;
 }
 #chart-title {

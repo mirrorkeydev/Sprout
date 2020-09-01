@@ -46,11 +46,11 @@
 
 <script>
 export default {
-  name: 'PlantIconPointy',
+  name: 'IconPlantPointy',
   props: {
-    hexColor: String
-  }
-}
+    hexColor: String,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

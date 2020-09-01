@@ -21,11 +21,11 @@
 import Connection from '@/components/Connection.vue';
 import Family from '@/components/Family.vue';
 import HeadingTitle from '@/components/HeadingTitle.vue';
-import LightChart from '@/components/LightChart.vue';
-import MoistureChart from '@/components/MoistureChart.vue';
-import PressureChart from '@/components/PressureChart.vue';
+import LightChart from '@/components/charts/LightChart.vue';
+import MoistureChart from '@/components/charts/MoistureChart.vue';
+import PressureChart from '@/components/charts/PressureChart.vue';
 import SectionHeader from '@/components/SectionHeader.vue';
-import TemperatureChart from '@/components/TemperatureChart.vue';
+import TemperatureChart from '@/components/charts/TemperatureChart.vue';
 
 
 export default {
@@ -41,13 +41,13 @@ export default {
     TemperatureChart,
   },
   mounted: function () {
-    this.$store.dispatch('fetchData')
+    this.$store.dispatch('fetchData');
 
     setInterval(() => {
-        this.$store.dispatch('fetchData')
+        this.$store.dispatch('fetchData');
       }, 30000);
   },
-}
+};
 </script>
 
 <style scoped>

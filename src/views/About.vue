@@ -16,21 +16,21 @@
 </template>
 
 <script>
-import HeadingTitle from '@/components/HeadingTitle.vue'
-import SectionHeader from '@/components/SectionHeader.vue'
+import HeadingTitle from '@/components/HeadingTitle.vue';
+import SectionHeader from '@/components/SectionHeader.vue';
 
 export default {
   name: 'About',
   components: {
     HeadingTitle,
-    SectionHeader
+    SectionHeader,
   },
   data: function () {
     return {
       images: new Array(11).fill(0).map((e, i) => `./img/plants/plant${i+1}.jpg`),
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <style scoped>

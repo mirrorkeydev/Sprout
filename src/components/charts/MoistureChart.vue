@@ -10,20 +10,20 @@
 </template>
 
 <script>
-import ECharts from 'vue-echarts'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/component/tooltip'
-import { mapState } from 'vuex'
+import ECharts from 'vue-echarts';
+import 'echarts/lib/chart/line';
+import 'echarts/lib/component/tooltip';
+import { mapState } from 'vuex';
 
 export default {
   name: 'MoistureChart',
   components:{
-      'v-chart': ECharts
+    'v-chart': ECharts,
   },
   props: {
-      title: String,
-      height: Number,
-      width: Number
+    title: String,
+    height: Number,
+    width: Number,
   },
   computed: {
     ...mapState(['chart_data']),
@@ -32,7 +32,7 @@ export default {
     chart_data(cd) {
       this.chartOptions.series[0].data = cd.soil_moisture.elinor;
       this.chartOptions.series[1].data = cd.soil_moisture.ophelia;
-    }
+    },
   },
   data () {
     return {
@@ -45,7 +45,7 @@ export default {
             return  params[0].data[0].toLocaleString('en-US') + "<br>" +
               colorSpan(params[0].color) + "elinor: " + params[0].data[1].toFixed(2) + "<br>" + 
               colorSpan(params[1].color) + "ophelia: "+ params[1].data[1].toFixed(2);
-          }
+          },
         },
         xAxis:{
           type: 'time',
@@ -54,7 +54,7 @@ export default {
             type: 'value',
             min: 100,
             splitNumber: 4,
-            splitLine: {show: false}
+            splitLine: {show: false},
         },
         series: [
           {
@@ -80,7 +80,7 @@ export default {
             sampling: 'min',
             color: ["#9E96FB"],
             animationEasing: 'cubicInOut',
-          }
+          },
         ],
         animationDuration: 1000,
         grid: {
@@ -89,10 +89,10 @@ export default {
           right: 60,
           bottom: 60,
         },
-      }
-    }
-  }
-}
+      },
+    };
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

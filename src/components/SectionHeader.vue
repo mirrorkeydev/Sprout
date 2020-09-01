@@ -5,17 +5,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
 
 export default {
   name: 'SectionHeader',
   computed: {
-      ...mapState(['family'])
+    ...mapState(['family']),
   },
   props: {
-      text: String
-  }
-}
+    text: String,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

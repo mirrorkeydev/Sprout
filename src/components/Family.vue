@@ -2,8 +2,8 @@
   <div class="family-wrapper unselectable" :class="$mq">
     <div class="family" :class="$mq">
       <div class="plant" v-for="plant in family" :key="plant.given_name" :class="$mq">
-        <PlantIconPointy v-if="plant.given_name === 'ophelia'" :hexColor="plant_status[plant.given_name]" />
-        <PlantIconRound v-if="plant.given_name === 'elinor'" :hexColor="plant_status[plant.given_name]" />
+        <IconPlantPointy v-if="plant.icon === 'pointy'" :hexColor="plant_status[plant.given_name]" />
+        <IconPlantRound v-if="plant.icon === 'round'" :hexColor="plant_status[plant.given_name]" />
         <span id="id-dot" :style="'background-color:'+ plant.color + ';'"></span>
         <span class="plant-name">{{ plant.given_name.toLowerCase() }}</span>
       </div>
@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import PlantIconPointy from '@/components/PlantIconPointy.vue';
-import PlantIconRound from '@/components/PlantIconRound.vue';
+import { mapState } from 'vuex';
+import IconPlantPointy from '@/components/icons/IconPlantPointy.vue';
+import IconPlantRound from '@/components/icons/IconPlantRound.vue';
 
 const GREY = '#ccc';
 const GREEN = '#b6f0b5';
@@ -38,13 +38,13 @@ export default {
         }
         return [p.given_name, GREY];
       }));
-    }
+    },
   },
   components: {
-    PlantIconPointy,
-    PlantIconRound,
-  }
-}
+    IconPlantPointy,
+    IconPlantRound,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

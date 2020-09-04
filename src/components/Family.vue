@@ -27,7 +27,10 @@ export default {
     ...mapState(['family', 'chart_data']),
     plant_status() {
       return Object.fromEntries(this.family.map(p => {
-        const moisture = this.chart_data.soil_moisture[p.given_name]?.slice(-1)[0][1];
+        const moisture = this.chart_data.soil_moisture[p.given_name]?.slice()
+          .reverse()
+          .find((e) => e[0] < new Date(new Date() - 1000 * 60 * 60 * 24 * 3))[1];
+        console.log(moisture);
         if (typeof moisture === 'number' && !isNaN(moisture)) {
           if (moisture > p.green_threshold) {
             return [p.given_name, GREEN];

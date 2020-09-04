@@ -22,8 +22,9 @@ Sprout's business logic consists of [an API](https://github.com/mirrorkeydev/Spr
 
 #### Data collection
 The data collection is handled by [AzureSpherePlantMonitor](https://github.com/prototypicalpro/AzureSpherePlantMonitor), which is an [Azure Sphere MT3620](https://www.element14.com/community/community/designcenter/azure-sphere-starter-kits/) hooked up to [Chirp!](https://www.adafruit.com/product/1965) soil moisture sensors. This setup is currently deployed in my room, where it continues to gather new data every 2 minutes and publish its findings to the MongoDB Atlas instance every 10 minutes.
-
-<img height=400 src="https://user-images.githubusercontent.com/35010111/92289626-f84d3980-eec5-11ea-805c-3dd078c05163.jpg" alt="SPROUT"> <img height=400 src="https://user-images.githubusercontent.com/35010111/92289504-8e349480-eec5-11ea-98c4-3fb83bd4cb50.png" alt="Sprout interface">
+<div align=center>
+  <img height=600 src="https://user-images.githubusercontent.com/35010111/92289626-f84d3980-eec5-11ea-805c-3dd078c05163.jpg" alt="SPROUT">
+</div>
 
 ## 👥 Authors
 This project is a collaboration between [@mirrorkeydev](https://github.com/mirrorkeydev) (dashboard + api) and [@prototypicalpro](https://github.com/prototypicalpro) (api + IoT data collection).

@@ -39,6 +39,7 @@ npm run serve
 #### Compiles and minifies for production
 ```
 npm run build
+gh-pages -d dist // if deploying to GitHub pages
 ```
 
 #### Lints and fixes files

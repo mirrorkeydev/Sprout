@@ -5,7 +5,7 @@
       <SectionHeader text="about" />
       <div id="main-wrapper">
         <div class="about-connection">
-          <img id="about-connection-img" :class="$mq" src="./img/plants/plantconnection.jpg" alt="">
+          <img id="about-connection-img" :class="$mq" :src="'./img/plants/plantconnection.jpg'" alt="">
         </div>
         <p id="text" :class="$mq">
           Sprout was made by <a href="https://github.com/mirrorkeydev">Melanie Gutzmann</a>

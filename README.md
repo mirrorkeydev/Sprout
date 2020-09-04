@@ -21,7 +21,9 @@ Sprout's frontend was written using [Vue.js](https://vuejs.org/). The charts wer
 Sprout's business logic consists of [an API](https://github.com/mirrorkeydev/SproutServerless) implemented using AWS Lambda and Serverless that is periodically polled by the frontend. This API retrieves the necessary data from a MongoDB instance hosted on Atlas, does a small amount of processing to reduce the number of data points, and returns it to the frontend.
 
 #### Data collection
-The data collection is handled by [AzureSpherePlantMonitor](https://github.com/prototypicalpro/AzureSpherePlantMonitor), which is an Azure Sphere hooked up to soil moisture sensors. This setup is currently deployed in my room, where it continues to gather new data every 2 minutes and publish its findings to the MongoDB Atlas instance every 10 minutes.
+The data collection is handled by [AzureSpherePlantMonitor](https://github.com/prototypicalpro/AzureSpherePlantMonitor), which is an [Azure Sphere MT3620](https://www.element14.com/community/community/designcenter/azure-sphere-starter-kits/) hooked up to [Chirp!](https://www.adafruit.com/product/1965) soil moisture sensors. This setup is currently deployed in my room, where it continues to gather new data every 2 minutes and publish its findings to the MongoDB Atlas instance every 10 minutes.
+
+<img height=450 src="./public/img/plants/plantconnection.jpg" alt="SPROUT"> <img height=450 src="https://user-images.githubusercontent.com/35010111/92289504-8e349480-eec5-11ea-98c4-3fb83bd4cb50.png" alt="Sprout interface">
 
 ## 👥 Authors
 This project is a collaboration between [@mirrorkeydev](https://github.com/mirrorkeydev) (dashboard + api) and [@prototypicalpro](https://github.com/prototypicalpro) (api + IoT data collection).

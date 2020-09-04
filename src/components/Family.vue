@@ -31,7 +31,6 @@ export default {
           .reverse()
           // use soil moisture data from three days ago
           .find((e) => e[0] < new Date(new Date() - 1000 * 60 * 60 * 24 * 3))[1];
-        console.log(moisture);
         if (typeof moisture === 'number' && !isNaN(moisture)) {
           if (moisture > p.green_threshold) {
             return [p.given_name, GREEN];

@@ -77,7 +77,13 @@ export default {
   },
   watch: {
     chart_data(cd) {
-      this.chartOptions.series[0].data = cd.temperature;
+      // Temperature readings run about 8 degrees too hot
+      this.chartOptions.series[0].data = cd.temperature.map((t) => 
+      { 
+        let temp = Object.assign([], t);
+        temp[1] = temp[1] - 8;
+        return temp; 
+      });
     },
   },
 };

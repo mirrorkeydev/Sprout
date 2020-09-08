@@ -29,7 +29,8 @@ export default {
       return Object.fromEntries(this.family.map(p => {
 
         // Compare soil moisture from 3 days ago with today's soil moisture; if the plant's been 
-        // watered in the last three days, then we wna
+        // watered in the last three days, then we want to compare that value to the threshold,
+        // else we want to incorporate a delay since plants need to sit dry for a bit until they're unhappy.
         const curmoisture = this.chart_data.soil_moisture[p.given_name]?.slice(0, -1)[0][1];
         const oldmoisture = this.chart_data.soil_moisture[p.given_name]?.slice()
           .reverse()

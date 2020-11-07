@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -20,17 +21,17 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.4",
-    "@vue/cli-plugin-eslint": "~4.5.4",
-    "@vue/cli-plugin-router": "^4.5.4",
-    "@vue/cli-plugin-unit-jest": "^4.5.4",
-    "@vue/cli-plugin-vuex": "^4.5.4",
-    "@vue/cli-service": "~4.5.4",
-    "@vue/test-utils": "^1.0.5",
+    "@vue/cli-plugin-babel": "~4.5.6",
+    "@vue/cli-plugin-eslint": "~4.5.6",
+    "@vue/cli-plugin-router": "^4.5.6",
+    "@vue/cli-plugin-unit-jest": "^4.5.6",
+    "@vue/cli-plugin-vuex": "^4.5.6",
+    "@vue/cli-service": "~4.5.6",
+    "@vue/test-utils": "^1.1.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.7.0",
+    "eslint": "^7.9.0",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-jest": "^3.0.6",
+    "vue-jest": "^3.0.7",
     "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
@@ -47,8 +48,14 @@
       "ecmaVersion": 6
     },
     "rules": {
-      "comma-dangle": ["error", "always-multiline"],
-      "semi": ["error", "always"]
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
     },
     "overrides": [
       {

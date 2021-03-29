@@ -15,7 +15,7 @@ import 'echarts/lib/component/tooltip';
 import { mapState } from 'vuex';
 
 export default {
-  name: 'TemperatureChart',
+  name: 'HumidityChart',
   components:{
       'v-chart': ECharts,
   },
@@ -31,6 +31,7 @@ export default {
           trigger: 'axis',
           formatter: (params) => {
             var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+
             return params[0].data[0].toLocaleString('en-US') + "<br>" + colorSpan(params[0].color) + params[0].data[1].toFixed(2);
           },
         },
@@ -39,22 +40,21 @@ export default {
         },
         yAxis:{
           type: 'value',
-          min: 700,
-          max: 1300,
+          min: 10,
           splitNumber: 4,
           splitLine: {show: false},
         },
         visualMap: {
           show: false,
           type: 'continuous',
-          min: 700,
-          max: 1300,
-          color: ['#414873', '#658da3'],
+          min: 20,
+          max: 80,
+          color: ['#444', '#CCC'],
         },
         series: [
           {
             type: 'line',
-            data: [],
+            data: null,
             lineStyle: {
               width: 3,
             },
@@ -77,7 +77,7 @@ export default {
   },
   watch: {
     chart_data(cd) {
-      this.chartOptions.series[0].data = cd.pressure;
+      this.chartOptions.series[0].data = cd.humidity;
     },
   },
 };

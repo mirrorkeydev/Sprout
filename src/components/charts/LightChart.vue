@@ -40,16 +40,16 @@ export default {
         },
         yAxis:{
           type: 'value',
-          min: 740,
-          max: 775,
+          min: 0,
+          max: 500,
           splitNumber: 4,
           splitLine: {show: false},
         },
         visualMap: {
           show: false,
           type: 'continuous',
-          min: 740,
-          max: 765,
+          min: 0,
+          max: 500,
           color: ['#f6faa7', '#b5db9c', '#315e32'],
         },
         series: [

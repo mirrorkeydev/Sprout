@@ -39,6 +39,7 @@ export default new Vuex.Store({
       temperature: null,
       pressure: null,
       light: null,
+      humidity: null,
     },
   },
   mutations: {
@@ -69,6 +70,7 @@ export default new Vuex.Store({
         data.temperature = plant_data.message[0].datetime.map((x, i) => [new Date(x), plant_data.message[0].temp[i]]);
         data.pressure = plant_data.message[0].datetime.map((x, i) => [new Date(x), plant_data.message[0].pressure[i]]);
         data.light = plant_data.message[0].datetime.map((x, i) => [new Date(x), plant_data.message[0].light[i]]);
+        data.humidity = plant_data.message[0].datetime.map((x, i) => [new Date(x), plant_data.message[0].humidity[i]]);
         
         const dates_measured = plant_data.message[0].datetime;
         context.commit('SET_DATA', data);

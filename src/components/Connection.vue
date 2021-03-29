@@ -1,8 +1,8 @@
 <template>
   <div class="connection unselectable" :class="$mq">
-    <img v-if="connection_status === 'connected'" id="logo" src="@/assets/connected.png" alt="Connected" :class="$mq">
-    <img v-if="connection_status === 'connecting'" id="logo" src="@/assets/connecting.png" alt="Connecting" :class="$mq">
-    <img v-if="connection_status === 'connecting_failed'" id="logo" src="@/assets/connectingfailed.png" alt="Connection Failed" :class="$mq">
+    <img v-if="connection_status === 'connected'" id="logo" src="@/assets/connected.png" alt="Connected" :class="$mq" title="Data source connected!">
+    <img v-if="connection_status === 'connecting'" id="logo" src="@/assets/connecting.png" alt="Connecting" :class="$mq" title="Checking connection to data source">
+    <img v-if="connection_status === 'connecting_failed'" id="logo" src="@/assets/connectingfailed.png" alt="Connection Failed" :class="$mq" title="Connection to data source failed">
     <p v-if="connection_status === 'connected' && $mq !== 'mobile'" :class="$mq">
       <span>sensors connected</span>
     </p>

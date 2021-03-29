@@ -10,6 +10,7 @@
     <SectionHeader text="environment" />
     <div id="environment-charts" :class="$mq">
       <TemperatureChart title="temperature" :height="350" :width="600" />
+      <HumidityChart title="humidity" :height="350" :width="600" />
       <PressureChart title="pressure" :height="350" :width="600" />
       <LightChart title="light" :height="350" :width="600" />
     </div>
@@ -26,6 +27,7 @@ import MoistureChart from '@/components/charts/MoistureChart.vue';
 import PressureChart from '@/components/charts/PressureChart.vue';
 import SectionHeader from '@/components/SectionHeader.vue';
 import TemperatureChart from '@/components/charts/TemperatureChart.vue';
+import HumidityChart from '@/components/charts/HumidityChart.vue';
 
 
 export default {
@@ -39,6 +41,7 @@ export default {
     PressureChart,
     SectionHeader,
     TemperatureChart,
+    HumidityChart,
   },
   mounted: function () {
     this.$store.dispatch('fetchData');

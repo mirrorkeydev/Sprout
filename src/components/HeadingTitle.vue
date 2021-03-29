@@ -47,9 +47,9 @@ li {
 }
 
 .heading-title {
-    margin: 30px;
-    overflow: auto;
-    display: inline-block;
+  margin: 30px;
+  overflow: auto;
+  display: inline-block;
 }
 
 #logo {

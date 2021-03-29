@@ -16,10 +16,10 @@ import { mapState } from 'vuex';
 import IconPlantPointy from '@/components/icons/IconPlantPointy.vue';
 import IconPlantRound from '@/components/icons/IconPlantRound.vue';
 
-const GREY = '#ccc';
+// const GREY = '#ccc';
 const GREEN = '#b6f0b5';
-const YELLOW = '#f8e09f';
-const RED = '#f8ab9f';
+// const YELLOW = '#f8e09f';
+// const RED = '#f8ab9f';
 
 export default {
   name: 'Family',
@@ -31,21 +31,24 @@ export default {
         // Compare soil moisture from 3 days ago with today's soil moisture; if the plant's been 
         // watered in the last three days, then we want to compare that value to the threshold,
         // else we want to incorporate a delay since plants need to sit dry for a bit until they're unhappy.
-        const curmoisture = this.chart_data.soil_moisture[p.given_name]?.slice(0, -1)[0][1];
-        const oldmoisture = this.chart_data.soil_moisture[p.given_name]?.slice()
-          .reverse()
-          .find((e) => e[0] < new Date(new Date() - 1000 * 60 * 60 * 24 * 3))[1];
-        const moisture = curmoisture > oldmoisture ? curmoisture : oldmoisture;
+        
+        // const curmoisture = this.chart_data.soil_moisture[p.given_name]?.slice(0, -1)[0][1];
+        // const oldmoisture = this.chart_data.soil_moisture[p.given_name]?.slice()
+        //   .reverse()
+        //   .find((e) => e[0] < new Date(new Date() - 1000 * 60 * 60 * 24 * 3))[1];
+        // const moisture = curmoisture > oldmoisture ? curmoisture : oldmoisture;
 
-        if (typeof moisture === 'number' && !isNaN(moisture)) {
-          if (moisture > p.green_threshold) {
-            return [p.given_name, GREEN];
-          } else if (moisture > p.yellow_threshold) {
-            return [p.given_name, YELLOW];
-          }
-          return [p.given_name, RED];
-        }
-        return [p.given_name, GREY];
+        // if (typeof moisture === 'number' && !isNaN(moisture)) {
+        //   if (moisture > p.green_threshold) {
+        //     return [p.given_name, GREEN];
+        //   } else if (moisture > p.yellow_threshold) {
+        //     return [p.given_name, YELLOW];
+        //   }
+        //   return [p.given_name, RED];
+        // }
+        // return [p.given_name, GREY];
+
+        return [p.given_name, GREEN];
       }));
     },
   },

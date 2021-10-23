@@ -52,7 +52,6 @@ export default {
         },
         yAxis:{
             type: 'value',
-            min: 100,
             splitNumber: 4,
             splitLine: {show: false},
         },

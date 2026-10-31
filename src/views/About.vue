@@ -8,9 +8,9 @@
           <img id="about-connection-img" :class="$mq" :src="'./img/plants/plantconnection.jpg'" alt="">
         </div>
         <p id="text" :class="$mq">
-          Sprout was made by <a href="https://github.com/mirrorkeydev">Melanie Gutzmann</a>
+          Sprout was made by <a href="https://github.com/mirrorkeydev">mirrorkeydev</a>
           and <a href="https://github.com/prototypicalpro">Noah Koontz</a>. The project
-          is inspired by (and connected to) Melanie's plant collection.
+          is inspired by (and connected to) mirrorkeydev's plant collection.
           <br><br>
           The current setup consists of two "Chirp!" soil moistures connected to an 
           Azure Sphere MT3620. These collect environmental data every 2 minutes, and
